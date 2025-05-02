@@ -1,0 +1,43 @@
+{% extends "inicio.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Carrito de Compras</h1><br>
+    <!-- Botón para regresar -->
+    <a href="/listar" class="btn btn-secondary mb-3">Volver a la tienda</a>
+    
+    <div class="row">
+        {% if productos_carrito %}
+            {% for producto in productos_carrito %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <!-- Imagen del producto (suponiendo que tienes imágenes por producto) -->
+                        <img src="{{ producto[3] }}" class="card-img-top" alt="Imagen de {{ producto[1] }}">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{ producto[1] }}</h5>
+                            <p class="card-text">Precio: ${{ producto[2] }}</p>
+                            
+                            <!-- Formulario para eliminar producto -->
+                            <form method="POST" action="/carrito/eliminar/{{ producto[0] }}" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Enlace para enviar el carrito por WhatsApp -->
+            <a href="https://wa.me/+5492352466426?text=Carrito%20de%20compras:%0A
+                {% for producto in productos_carrito %}
+                    {{ producto[1] }}%20-%20$%20{{ producto[2] }}%0A
+                {% endfor %}
+                ¡Gracias por tu compra!" target="_blank" class="btn btn-success">
+                Enviar Carrito a WhatsApp
+            </a>
+        {% else %}
+            <p>El carrito está vacío.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

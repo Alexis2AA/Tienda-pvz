@@ -1,0 +1,41 @@
+{% extends "inicio.html" %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+    <style>
+     html, body {
+    height: 100%;
+    margin: 0;
+    background: url('/static/images/pasto.jpg') repeat;
+    background-size: auto; /* Si quieres que se repita sin redimensionar */
+}
+.cajaconta2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh; /* Altura completa de la ventana */
+    }
+
+    .container2 {
+        background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con algo de transparencia */
+        padding: 60px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+    }
+
+    </style>
+    <div class="cajaconta2">
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="container2">
+              <label for="nombre">Ingrese usuario</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese usuario" required>
+            
+            
+              <label for="contraseña">Contraseña</label>
+              <input type="password" class="form-control" id="contrasena" name="contraseña" placeholder="Contraseña" required>
+            <br>
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        </form>
+    </div>
+{% endblock %}

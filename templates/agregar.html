@@ -1,0 +1,27 @@
+{% extends "inicio.html" %}
+{% block content %}
+<h1 class="text-center">Agregar Peluche</h1>
+<div class="card">
+    <div class="card-body">
+        <form action="{{ url_for('agregar_producto') }}" method="POST">
+            <div class="row mt-3">
+                <div class="col">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control mt-3" id="nombre" name="nombre" required>
+                </div>
+                <div class="col">
+                    <label for="precio">Precio</label>
+                    <input type="text" class="form-control mt-3" id="precio" name="precio" required>
+                </div>
+                <div class="col">
+                    <label for="imagen">Imagen (solo el nombre, sin extensión)</label>
+                    <input type="text" class="form-control mt-3" id="imagen" name="imagen" required>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-outline-success btn-sm mt-3">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

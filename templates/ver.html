@@ -1,0 +1,63 @@
+{% extends "inicio.html" %}
+{% block content %}
+<style>
+    .nopasardezoom {
+        height: 100%;
+        width: 60%;
+        overflow: hidden; /* Oculta el desbordamiento de la imagen */
+    }
+    .zoom-container img {
+        display: block;
+        width: 100%; /* Ajusta el ancho para que se adapte al contenedor */
+        transition: transform 0.5s ease;
+    }
+    .zoom-container:hover img {
+        transform: scale(1.5); /* Ajusta el valor según el nivel de zoom que desees */
+    }
+    .form-inline .form-group {
+        display: flex;
+        align-items: center;
+    }
+    .form-inline .form-group label {
+        margin-right: 10px;
+    }
+    .form-control-plaintext {
+        border: none;
+        background: none;
+        padding-left: 0;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Imagen con efecto de zoom -->
+            <div class="nopasardezoom">
+                <div class="zoom-container">
+                    <img src="{{ url_for('static', filename=producto[3][7:]) }}" alt="{{ producto[1] }}" class="img-fluid">
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Información del producto -->
+            <form class="form-inline">
+                <h1 class="text-center">Detalles del Producto</h1>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control-plaintext" id="nombre" name="nombre" value="{{ producto[1] }}" readonly>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="precio">Precio:</label>
+                    <input type="number" class="form-control-plaintext" id="precio" name="precio" value="{{ producto[2] }}" readonly>
+                </div>
+                <br>
+                <p>El Peluche proviene de la franquicia **Plants vs. Zombies (PVZ)**. Esta popular serie de videojuegos desarrollada por PopCap Games se lanzó por primera vez en 2009. En el juego, los jugadores utilizan diferentes plantas para defenderse de una invasión de zombis. Los personajes y elementos del juego, como los adorables y valientes girasoles y los temibles zombis, han ganado un lugar especial en el corazón de los fans de todas las edades.</p>
+                <a href="{{ url_for('listar') }}" class="btn btn-primary mt-3">Cerrar</a>
+                
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

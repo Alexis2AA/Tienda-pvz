@@ -1,0 +1,49 @@
+{% extends "inicio.html" %}
+
+
+{% block content %}
+
+<style>
+    /* Estilo para bordes grises */
+    .table-bordered-gray {
+        border: 1px solid #ccc; /* Color gris claro */
+    }
+
+    .table-bordered-gray th, .table-bordered-gray td {
+        border: 1px solid #ccc; /* Bordes grises en las celdas */
+    }
+</style>
+
+
+
+<div class="container mt-5">
+    <h1 class="text-center">Peluches disponibles</h1>
+    <form method="POST" action="{{ url_for('peluches') }}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="buscar" class="form-control" placeholder="Buscar" value="{{ buscar_palabra }}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <th><a href="{{ url_for('agregar_producto') }}" class="btn btn-outline-success btn-sm">Agregar Nueva Fila</a></th>
+        </div>
+    </form>
+    <div class="row">
+        {% for fila in data %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ fila[3] }}" alt="Imagen" height="330" width="330" class="card-img-top" alt="{{ fila[1] }} imagen">
+                <div class="card-body">
+                    <h5 class="card-title">{{ fila[1] }}</h5>
+                    <p class="card-text">
+                        <strong>Precio:</strong> ${{ fila[2] }}
+                    </p>
+                    <!-- Botones de Edición y Eliminación -->
+                    <a href="{{ url_for('editar_producto', id=fila[0]) }}" class="btn btn-primary">Editar</a>
+                    <form action="{{ url_for('borrar_producto', id=fila[0]) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Borrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

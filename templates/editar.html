@@ -1,0 +1,43 @@
+{% extends "inicio.html" %}
+{% block content %}
+<style>
+    .zoom-container img {
+        display: block;
+        width: 60%;
+        transition: transform 0.5s ease;
+    }
+    .zoom-container:hover img {
+        transform: scale(1.5); /* Ajusta el valor según el nivel de zoom que desees */
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center">Editar Producto</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Imagen con efecto de zoom -->
+            <div class="zoom-container">
+                <img src="{{ url_for('static', filename=producto[3][7:]) }}" alt="{{ producto[1] }}" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Formulario de edición -->
+            <form action="{{ url_for('editar_producto', id=producto[0]) }}" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ producto[1] }}">
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" class="form-control" id="precio" name="precio" value="{{ producto[2] }}">
+                </div>
+                <div class="form-group">
+                    <label for="imagen">Imagen:</label>
+                    <input type="text" class="form-control" id="imagen" name="imagen" value="{{ producto[3] }}" readonly>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

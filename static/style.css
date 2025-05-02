@@ -1,0 +1,8 @@
+.table-responsive {
+    overflow-x: auto;
+}
+
+.img-thumbnail {
+    max-width: 150px;
+    height: auto;
+}
