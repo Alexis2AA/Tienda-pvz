@@ -1,14 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import mysql.connector
 
+import mysql.connector
+from flask import Flask
+
 app = Flask(__name__)
 app.secret_key = 'alexis'
+
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
+    host="alexisAA.mysql.pythonanywhere-services.com",
+    user="alexisAA",
     password="",
-    database="tienda_peluches"
+    database="alexisAA$tienda_peluches"
 )
+
+cursor = db.cursor()
+
 
 @app.route('/')
 def home():
